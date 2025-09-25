@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <motion.div
-      className="main-container flex flex-col items-center justify-center bg-white text-black font-sans text-center p-8"
+      className="main-container flex flex-col items-center justify-center font-sans text-center p-8"
       variants={container}
       initial="hidden"
       animate="show"

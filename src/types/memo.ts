@@ -1,4 +1,4 @@
-export type MemoList = {
+export type MemoListResponse = {
   id: number;
   title: string;
   content: string;
@@ -6,7 +6,7 @@ export type MemoList = {
   updatedAt: string;
 }
 
-export type CreateMemo = {
+export type MemoSaveRequest = {
   title: string;
   content: string;
 }

@@ -5,17 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start"
   },
   "dependencies": {
     "@tiptap/extension-placeholder": "^3.4.2",
     "@tiptap/react": "^3.4.2",
     "@tiptap/starter-kit": "^3.4.2",
-    "axios": "^1.12.1",
+    "axios": "^1.12.2",
     "framer-motion": "^12.23.12",
     "froala-editor": "^4.6.2",
-    "next": "15.5.2",
+    "next": "^15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-froala-wysiwyg": "^4.6.2",

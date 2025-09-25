@@ -9,23 +9,29 @@ type ToolbarButtonType =
   | { type: 'bold' | 'italic' | 'strike' | 'bulletList' | 'orderedList'; label: string }
   | { type: 'heading'; level: 1 | 2 | 3; label: string }
 
-export default function SimpleEditor() {
+type SimpleEditorProps = {
+  value?: string;
+  onChange?: (content: string) => void;
+}
+
+export default function SimpleEditor({ value, onChange }: SimpleEditorProps) {
   const [isClient, setIsClient] = useState(false)
   useEffect(() => setIsClient(true), [])
 
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: { levels: [1, 2, 3] },
-      }),
+    extensions: [ StarterKit.configure({ heading: { levels: [1, 2, 3] }}),
       Placeholder.configure({
-        placeholder: 'Type something amazing...',
+        placeholder: '우리 간단하게 정리해봅시다.',
         showOnlyWhenEditable: true,
       }),
     ],
+    content: value || '',
+    onUpdate: ({ editor }) => {
+      onChange?.(editor.getHTML())
+    },
     editorProps: {
       attributes: {
-        class: 'editor focus:outline-none p-4 bg-white',
+        class: 'editor focus:outline-none p-4',
       },
     },
     immediatelyRender: false,
@@ -54,11 +60,6 @@ function Toolbar({ editor }: { editor: Editor }) {
     { type: 'orderedList', label: '1.' },
   ] as const
 
-  const isActive = (btn: ToolbarButtonType) =>
-    btn.type === 'heading'
-      ? editor.isActive('heading', { level: btn.level })
-      : editor.isActive(btn.type)
-
   const onClick = (btn: ToolbarButtonType) => {
     const chain = editor.chain().focus()
     switch (btn.type) {
@@ -78,7 +79,7 @@ function Toolbar({ editor }: { editor: Editor }) {
           key={i}
           type="button"
           onClick={() => onClick(btn)}
-          className='px-3 py-1 rounded text-sm font-medium transition text-gray-700 hover:bg-gray-200'>
+          className='px-3 py-1 rounded text-sm font-medium transition text-gray-600 hover:bg-gray-200'>
           {btn.label}
         </button>
       ))}

@@ -2,17 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { MemoList } from '@/types/memo';
 import axios from 'axios';
+import { MemoListResponse } from '@/types/memo';
 
-const PostList = () => {
+const MemoList = () => {
 
-  const [memo, setMemo] = useState<MemoList[]>()
+  const [memo, setMemo] = useState<MemoListResponse[]>()
 
   // TODO: 나중에 요청 메서드로 나누기
   const fetchData = async () => {
     try {
-      const response = await axios.get<MemoList[]>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/memo`);
+      const response = await axios.get<MemoListResponse[]>(`${process.env.NEXT_PUBLIC_API_BASE_URL}/memo`);
       setMemo(response.data);
     } catch (error) {
       console.error('Failed to fetch memos:', error);
@@ -24,7 +24,7 @@ const PostList = () => {
   }, [])
 
   return (
-    <div className="w-full bg-white p-6 rounded-lg">
+    <div className="w-full p-6 rounded-lg">
       <h2 className="text-2xl font-bold mb-6">Memo</h2>
       <ul className="space-y-4">
         {memo?.map((memo) => (
@@ -47,4 +47,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default MemoList;
