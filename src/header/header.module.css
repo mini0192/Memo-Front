@@ -1,0 +1,41 @@
+.header {
+  background-color: var(background-color); /* 배경 흰색 */
+  height: 50px; /* 높이 */
+  display: flex;
+  align-items: center; /* 수직 중앙 정렬 */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.container {
+  max-width: 1040px; /* Tailwind의 max-w-7xl 대체 */
+  margin: 0 auto; /* 가운데 정렬 */
+  padding: 0 16px; /* 좌우 패딩 */
+  width: 100%;
+}
+
+.nav {
+  display: flex;
+  justify-content: center; /* 메뉴 중앙 정렬 */
+}
+
+.navList {
+  display: flex;
+  list-style: none; /* ul 기본 점 제거 */
+  padding: 0;
+  margin: 0;
+  gap: 32px; /* Tailwind의 space-x-8 대체 */
+}
+
+.navItem a {
+  font-size: 16px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.navItem a:hover {
+  color: var(--foreground-light);
+}
